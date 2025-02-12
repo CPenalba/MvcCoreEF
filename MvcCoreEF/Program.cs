@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<RepositoryHospital>();
-string connectionString = @"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=SA;Encrypt=True;Trust Server Certificate=True";
+string connectionString = builder.Configuration.GetConnectionString("SqlHospital");
 //PARA INYECTAR UN SERVICIO CONTEXT SE UTILIZA EL METODO ADDDBCONTEXT CON LAS OPCIONES QUE NECESITE LA BBDD
 builder.Services.AddDbContext<HospitalContext>(options => options.UseSqlServer(connectionString));
 
